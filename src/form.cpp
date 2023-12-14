@@ -20,5 +20,9 @@ void Form::start() {
     QString str = ui->str->text();
     QString sub_str = ui->sub_str->text();
 
-    ui->result->setText("result.....");
+    if (str.contains(sub_str)) {
+        ui->result->setText("Подстрока найдена!");
+    } else {
+        ui->result->setText("Подстрока не найдена!");
+    }
 }

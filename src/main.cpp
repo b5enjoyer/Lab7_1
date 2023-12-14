@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QApplication>
 #include <QDebug>
 #include "bigint.hpp"
 #include <string>
@@ -19,15 +20,15 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  QCoreApplication app(argc, argv);
+    QApplication app(argc, argv);
+    Form f;
+    f.show();
 
 
-  //hello(cin, cout);
-
-  Form f;
-  f.show();
+    hello(cin, cout);
 
 
 
-  return app.exec();
+
+    return app.exec();
 }
