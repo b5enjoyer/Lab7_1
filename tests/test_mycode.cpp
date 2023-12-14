@@ -1,58 +1,78 @@
 #include <QtTest/QtTest>
-#include "../src/mycode.h"
+#include "../src/form.h"
 
-#include <sstream>
-using namespace std;
-
-class TestMyCode: public QObject {
+class TestMyCode : public QObject {
     Q_OBJECT
+
 private slots:
-    void testIvan();
-    void testMultipleWords();
-    void testSpecialCharactersAndCase();
+    void testSubstringPresent();
+    void testSubstringNotPresent();
+    void testEmptyStrings();
+    void testSubstringAtBeginning();
 };
 
-void TestMyCode::testIvan() {
-    std::stringstream sstr;
-    stringstream isst;
-    isst << "Ivan";
+void TestMyCode::testSubstringPresent() {
+    Form form;
+    QString str = "Hello, World!";
+    QString sub_str = "World";
 
-    hello(isst, sstr);
+    form.ui->str->setText(str);
+    form.ui->sub_str->setText(sub_str);
 
-    string str;
-    getline(sstr, str);
+    form.start();
 
-    QCOMPARE(str == "hello Ivan", true);
+    // Дополнительный вывод для отслеживания прохождения теста
+    qDebug() << "Test Substring Present Result:" << form.ui->result->text();
+
+    QCOMPARE(form.ui->result->text(), QString("Подстрока найдена!"));
 }
 
-void TestMyCode::testMultipleWords() {
-    std::stringstream sstr;
-    std::stringstream isst;
-    isst << "John Doe";
+void TestMyCode::testSubstringNotPresent() {
+    Form form;
+    QString str = "Hello, World!";
+    QString sub_str = "Universe";
 
-    hello(isst, sstr);
+    form.ui->str->setText(str);
+    form.ui->sub_str->setText(sub_str);
 
-    std::string str;
-    getline(sstr, str);
+    form.start();
 
-    QCOMPARE(QString::fromStdString(str), QString("hello John"));
+    // Дополнительный вывод для отслеживания прохождения теста
+    qDebug() << "Test Substring Not Present Result:" << form.ui->result->text();
+
+    QCOMPARE(form.ui->result->text(), QString("Подстрока не найдена!"));
 }
 
-void TestMyCode::testSpecialCharactersAndCase() {
-    std::stringstream sstr;
-    std::stringstream isst;
-    isst << "Alice123 *&^%";
+void TestMyCode::testEmptyStrings() {
+    Form form;
+    QString str = "";
+    QString sub_str = "";
 
-    hello(isst, sstr);
+    form.ui->str->setText(str);
+    form.ui->sub_str->setText(sub_str);
 
-    std::string str;
-    getline(sstr, str);
+    form.start();
 
-    QCOMPARE(QString::fromStdString(str), QString("hello Alice123"));
+    // Дополнительный вывод для отслеживания прохождения теста
+    qDebug() << "Test Empty Strings Result:" << form.ui->result->text();
+
+    QCOMPARE(form.ui->result->text(), QString("Подстрока найдена!")); // Ожидаем, что при пустых строках подстрока будет найдена
 }
+void TestMyCode::testSubstringAtBeginning() {
+    Form form;
+    QString str = "Hello, World!";
+    QString sub_str = "Hello";
 
+    form.ui->str->setText(str);
+    form.ui->sub_str->setText(sub_str);
 
+    form.start();
 
+    // Дополнительный вывод для отслеживания прохождения теста
+    qDebug() << "Test Substring At Beginning Result:" << form.ui->result->text();
+
+    QCOMPARE(form.ui->result->text(), QString("Подстрока найдена!")); // Ожидаем, что подстрока будет найдена в начале строки
+}
 
 QTEST_MAIN(TestMyCode)
 #include "test_mycode.moc"
