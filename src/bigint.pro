@@ -1,5 +1,6 @@
 QT += core
 QT += gui widgets
+QT += widgets
 
 CONFIG += c++11
 
@@ -10,6 +11,7 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += \
+    LevelsFacade.cpp \
     bigint.cpp\
     form.cpp \
     main.cpp \
@@ -18,6 +20,7 @@ SOURCES += \
 HEADERS += \
     bigint.hpp \
     form.h \
+    levelsfacade.h \
     mycode.h
 
 FORMS += \

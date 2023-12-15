@@ -8,15 +8,15 @@ INCLUDEPATH += .
 CONFIG  += c++11
 QT      += testlib
 QT      -= gui
-QT += core gui testlib widgets # Убедитесь, что 'widgets' присутствует, если используется QWidget
-
+QT += widgets
 
 HEADERS += \
-    ../src/form.h
+    ../src/bigint.hpp \
+    ../src/levelsfacade.h
 
 SOURCES += \
-    ../src/form.cpp \
+    ../src/LevelsFacade.cpp \
+    ../src/bigint.cpp \
+    #test_bigint.cpp \
+    ../src/mycode.cpp \
     test_mycode.cpp
-
-FORMS += \
-    ../src/form.ui
